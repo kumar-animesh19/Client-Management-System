@@ -1,0 +1,46 @@
+1) create user project identified by client;
+
+2) grant dba to project;
+
+3) create table client(
+   c_id varchar2(10) primary key,
+   c_name varchar2(20) not null,
+   company varchar2(50),
+   address varchar2(100) not null,
+   city varchar2(20) not null,
+   state varchar2(20) not null,
+   pincode number(6) not null,
+   contact_no number(10) not null,
+   email_id varchar2(100),
+   website varchar2(100));
+
+4) create table project(
+   p_id varchar2(10) primary key,
+   c_id varchar2(10) references client(c_id) not null,
+   p_name varchar2(50) not null,
+   cost number(10) not null,
+   start_date varchar2(10) not null,
+   delivery_date varchar2(10));
+
+5) create table maintenance(
+   m_id varchar2(10) primary key,
+   p_id varchar2(10) references project(p_id) not null,
+   m_date varchar2(10) not null,
+   cost number(10) not null);
+
+6) create table payment(
+   pay_id varchar2(10) primary key,
+   c_id varchar2(10) references client(c_id) not null,
+   p_id varchar2(10) references project(p_id),
+   m_id varchar2(10) references maintenance(m_id),
+   pay_date varchar2(10) not null,
+   pay_mode varchar2(10) not null,
+   amount number(10) not null,
+   dues number(10) not null);
+
+7) create table login(
+   name varchar2(20) not null,
+   username varchar2(20) primary key,
+   password varchar2(20) not null);
+
+8) insert atleast one row in login table.
